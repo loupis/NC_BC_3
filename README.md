@@ -7,6 +7,8 @@ cloub deploy : https://ncbc3-qurhgcklbo.now.sh/
 
 using db : https://mlab.com/databases/nc_bc_3_db
 
+circleci :  https://circleci.com/gh/loupis/NC_BC_3
+
 Swagger doc : 
 http://localhost:3000/api-docs/
 

@@ -26,7 +26,7 @@ describe('Test of all routings for accounts', function() {
     describe('## Create an account ', function() { 
         it('should create an account', function(done) { 
             request(app) .post('/accounts') .send(account) .end(function(err, res) { 
-                expect(res.statusCode).to.equal(200); 
+                expect(res.statusCode).to.equal(201); 
                 expect(res.body.email).to.equal('anna@nc.se'); 
                 account = res.body; 
                 done(); 
