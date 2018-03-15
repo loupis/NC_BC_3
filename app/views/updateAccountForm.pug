@@ -1,0 +1,19 @@
+html
+  head
+    title=title
+    link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
+  body
+    div.container
+      div.jumbotron
+        h1 Update account
+        form(method='PUT' action='/accounts')
+          div.form-group
+            label(for='id') Account id :
+            input.form-control(type='text' id='_id' placeholder='id' name='_id')
+          div.form-group
+            label(for='email') Email :
+            input.form-control(type='email' id='email' placeholder='email' name='email')
+          button.btn.btn-primary(type='submit') Update account
+          p
+          p
+            a.btn.btn-primary(href="/") Back 

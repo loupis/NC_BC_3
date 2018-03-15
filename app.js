@@ -1,12 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-//var methodOverride = require('method-override');
+var methodOverride = require('method-override');
 
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//app.use(methodOverride())
+app.use(methodOverride())
 
 app.set('views', __dirname + '/app/views')
 app.set('view engine', 'pug')
@@ -19,9 +19,10 @@ var swaggerUi = require('swagger-ui-express');
 var swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get('/', function (req, res) { res.json({ title : 'NC_BC_3' }) })
+app.get('/', function (req, res) { res.render( 'home', { title : 'NC_BC_3' }) })
 
 require('./app/routes/account.routes.js')(app);
+require('./app/routes/routes.js')(app);
 
 app.use((req, res, next) => {
     console.log(req.method);
