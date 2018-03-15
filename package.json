@@ -4,8 +4,8 @@
   "description": "A small CRUD service with REST API and a simple UI written in Node.js, Express.js with Mongodb",
   "main": "server.js",
   "scripts": {
-    "start" : "nodemon server.js",
-    "test": "mocha"
+    "start": "nodemon server.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,14 @@
     "express": "^4.16.3",
     "mongoose": "^5.0.10",
     "prettier": "^1.11.1",
+    "pug": "^2.0.1",
     "swagger-ui-express": "^2.0.15"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "jest": "^23.0.0-alpha.0",
     "mocha": "^5.0.4",
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "supertest": "^3.0.0"
   }
 }
