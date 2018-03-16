@@ -1,0 +1,24 @@
+html
+  head
+    title=title
+    link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
+  body
+    div.container
+      div.jumbotron
+        h1 Edit an account
+        div
+          label Account :
+          p
+          | id : #{account._id}
+          | email : #{account.email}
+          p
+          p  
+            a.btn.btn-primary(href=account.url+'/updateAccountForm')  Update
+          p  
+            a.btn.btn-primary(href=account.url+'/delete')  Delete
+          p
+            a.btn.btn-primary(href="/") Back
+          
+        
+
+

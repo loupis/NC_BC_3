@@ -19,8 +19,6 @@ var swaggerUi = require('swagger-ui-express');
 var swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get('/', function (req, res) { res.render( 'home', { title : 'NC_BC_3' }) })
-
 require('./app/routes/account.routes.js')(app);
 require('./app/routes/routes.js')(app);
 

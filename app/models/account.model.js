@@ -21,4 +21,11 @@ var AccountSchema = mongoose.Schema({
     timestamps: true
 });
 
+// Virtual for book's URL
+AccountSchema
+.virtual('url')
+.get(function () {
+  return '/accounts/' + this._id;
+});
+
 module.exports = mongoose.model('Account', AccountSchema);

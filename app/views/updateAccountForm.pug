@@ -6,14 +6,11 @@ html
     div.container
       div.jumbotron
         h1 Update account
-        form(method='PUT' action='/accounts')
-          div.form-group
-            label(for='id') Account id :
-            input.form-control(type='text' id='_id' placeholder='id' name='_id')
+        form(method='POST' action='/accounts')
           div.form-group
             label(for='email') Email :
             input.form-control(type='email' id='email' placeholder='email' name='email')
           button.btn.btn-primary(type='submit') Update account
           p
           p
-            a.btn.btn-primary(href="/") Back 
+            a.btn.btn-primary(href=account.url) Back 

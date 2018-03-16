@@ -1,10 +1,21 @@
 'use strict';
-
+var async = require('async');
 
 //var uniqueValidator = require('uniqueValidator');
 var Account = require('../models/account.model.js');
 
 //Account.schema.plugin(uniqueValidator);
+
+exports.home = function (req, res) { 
+     Account.find(function(err, accounts){
+        if(err) {
+            res.status(500).send({message: "Some error occurred while retrieving accounts."});
+        } else {
+            res.render('accounts', { title : 'NC_BC_3', accounts : accounts });
+            //res.status(200).send(accounts);
+        }
+    });
+};
 
 exports.create = function(req, res) {
     
@@ -19,8 +30,8 @@ exports.create = function(req, res) {
             console.log(err);
             res.status(500).send({message: "Some error occurred while creating the Account."});
         } else {
-            //res.render('statusAccount', { status : 'created', account : account });
-            return res.status(201).send(account);
+            res.render('accountStatus', { status : 'created', account : account });
+            //return res.status(201).send(account);
         }
     });
 
@@ -31,8 +42,8 @@ exports.findAll = function(req, res) {
         if(err) {
             res.status(500).send({message: "Some error occurred while retrieving accounts."});
         } else {
-            //res.render('accounts', { title : 'Accounts', accounts : accounts });
-            res.status(200).send(accounts);
+            res.render('accounts', { title : 'Accounts', accounts : accounts });
+            //res.status(200).send(accounts);
         }
     });
 };
@@ -50,14 +61,53 @@ exports.findOne = function(req, res) {
         if(!account) {
             return res.status(404).send({message: "Account not found with id " + req.params.id});            
         }
-        //res.render('statusAccount', { status : 'found', account : account});  
-        res.status(200).send(account);
+        res.render('accountStatus', { status : 'found', account : account});  
+        //res.status(200).send(account);
     });
 };
 
+exports.updateAccountForm = function(req, res) {
+    Account.findById(req.params.id, function(err, account) {
+        if(err) {
+            console.log(err);
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({message: "Account not found with id " + req.params.id});                
+            }
+            return res.status(500).send({message: "Error retrieving account with id " + req.params.id});
+        } 
+
+        if(!account) {
+            return res.status(404).send({message: "Account not found with id " + req.params.id});            
+        }
+        res.render('updateAccountForm', { account : account});  
+        //res.status(200).send(account);
+    });
+};
+
+exports.accountDetail = function(req, res, next) {
+    Account.findById(req.params.id, function(err, account) {
+        
+        if(err) {
+            console.log(err);
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({message: "Account not found with id " + req.params.id});                
+            }
+            return res.status(500).send({message: "Error retrieving account with id " + req.params.id});
+        } 
+
+        if(!account) {
+            return res.status(404).send({message: "Account not found with id " + req.params.id});            
+        }
+        //res.render('statusAccount', { status : 'found', account : account});  
+        res.render('accountDetail', { title: 'Account detail', account:  account } );
+    });
+};
+
+
 exports.update = function(req, res) {
-   	Account.findById(req.params.id, function(err, account) {
-		if(err) {
+    Account.findById(req.params.id, function(err, account) {
+		console.log("params :"+req.params.id);
+        if(err) {
 		    console.log(err);
 		    if(err.kind === 'ObjectId') {
 		        return res.status(404).send({message: "Account not found with id " + req.params.id});                
@@ -67,14 +117,14 @@ exports.update = function(req, res) {
 
 		if(!account) { return res.status(404).send({message: "Account not found with id " + req.params.id}); }
 
-		account.email = req.body.email;
+		account.email = req.params.email;
 
 		account.save(function(err, account){
 		    if(err) {
 		        res.status(500).send({message: "Could not update account with id " + req.params.id});
 		    } else {
-		        //res.render('statusAccount', { status : 'updated', account : account});  
-                return res.status(201).send(account);
+		        return res.render('updateAccountForm', { status : 'updated', account : account});  
+                //return res.status(201).send(account);
             }
 		});
   	});
@@ -92,8 +142,8 @@ exports.delete = function(req, res) {
         }
         if(!account) { return res.status(404).send({message: "Account not found with id " + req.params.id}); }
 
-        //es.status(201).render('statusAccount', { status : 'deleted', account : account});
-        return res.status(201).send(account);
+        return res.status(201).render('accountStatus', { status : 'deleted', account : account});
+        //return res.status(201).send(account);
     });
 
 };
