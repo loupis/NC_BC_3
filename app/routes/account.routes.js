@@ -1,28 +1,27 @@
-'use strict';
+var express = require('express');
 
 module.exports = function(app) {
 
-    var accounts = require('../controllers/account.controller.js');
+	var account_controller = require('../controllers/account.controller.js');
 
-    app.get('/', accounts.home);
+	app.get('/', account_controller.home);
 
-    app.post('/accounts', accounts.create);
+	app.get('/createAccountForm', account_controller.account_create_get);
 
-    app.get('/accounts', accounts.findAll);
+	app.post('/account/create', account_controller.account_create_post);
 
-    app.get('/', accounts.findAll);
+	app.get('/account/:id/delete', account_controller.account_delete_post);
 
-    //app.get('/accounts/:id', accounts.findOne);
+	app.get('/account/:id/update', account_controller.account_update_get);
 
-    app.put('/accounts/:id', accounts.update);
+	app.post('/account/:id/update', account_controller.account_update_post);
 
-    app.get('/accounts/:id/update', accounts.update);
+	app.get('/updateAccountForm', account_controller.account_update_get);
 
-    app.get('/accounts/:id/updateAccountForm', accounts.updateAccountForm);
+	app.get('/updateAccount/:id', account_controller.account_update_post);
 
-    app.get('/accounts/:id', accounts.accountDetail);
+	app.get('/account/:id', account_controller.account_detail);
 
-    app.get('/accounts/:id/delete', accounts.delete);
+	app.get('/accounts/', account_controller.account_list);
 
 }
-

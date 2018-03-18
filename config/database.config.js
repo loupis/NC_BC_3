@@ -1,5 +1,5 @@
 var dataBaseUrl;
 
 //dataBaseUrl = 'mongodb://localhost:27017/nc';
-dataBaseUrl = 'mongodb://nc:NaturalCyclesIsAGreatPlaceToWork@ds115579.mlab.com:15579/nc_bc_3_db';
+dataBaseUrl = process.env.MONGODB_URI || 'mongodb://nc:NaturalCyclesIsAGreatPlaceToWork@ds215739.mlab.com:15739/nc_bc_3_db';
 module.exports = { url : dataBaseUrl }

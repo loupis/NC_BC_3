@@ -5,7 +5,7 @@ html
   body
     div.container
       div.jumbotron
-        h1 Edit an account
+        h1 Account details : 
         div
           label Account :
           p
@@ -13,7 +13,7 @@ html
           | email : #{account.email}
           p
           p  
-            a.btn.btn-primary(href=account.url+'/updateAccountForm')  Update
+            a.btn.btn-primary(href=account.url+'/update')  Update
           p  
             a.btn.btn-primary(href=account.url+'/delete')  Delete
           p
