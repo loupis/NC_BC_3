@@ -8,7 +8,7 @@ var request = require('supertest');
 var expect = chai.expect;	
 
 describe('Accounts', function() { 
- 	beforeEach((done) => { //Before each test we empty the database
+ 	beforeEach((done) => { 
         Account.remove({}, (err) => { 
            done();         
         });     

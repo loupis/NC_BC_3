@@ -10,18 +10,6 @@ var Account = require('../models/account.model.js');
 
 //Account.schema.plugin(uniqueValidator);
 
-exports.home = function (req, res, next) { 
-     Account.find(function(err, accounts){
-        if(err) {
-            var err = Error("Some error occurred while retrieving accounts.");
-            err.status = 500;
-            return next(err); 
-        } else {
-            return res.status(200).render('accounts', { title : 'NC_BC_3', accounts : accounts });
-        }
-    });
-};
-
 exports.account_detail = function(req, res, next) {
     Account.findById(req.params.id, function(err, account) {      
         if(err) {
@@ -51,13 +39,9 @@ exports.account_list = function(req, res,next) {
             err.status = 500;
             return next(err); 
         } else {
-            return res.status(200).render('accounts', { title : 'Accounts list', accounts : accounts });
+            return res.status(200).render('accounts', { title : 'NC_BC_3', accounts : accounts });
         }
     });
-};
-
-exports.account_create_get = function(req, res) {   
-    res.render('createAccountForm', {});       
 };
 
 exports.account_create_post =  function(req, res, next) {

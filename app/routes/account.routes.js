@@ -4,9 +4,9 @@ module.exports = function(app) {
 
 	var account_controller = require('../controllers/account.controller.js');
 
-	app.get('/', account_controller.home);
+	app.get('/', account_controller.account_list);
 
-	app.get('/createAccountForm', account_controller.account_create_get);
+	app.get('/account/create',  function(req, res) { res.render('createAccountForm') });
 
 	app.post('/account/create', account_controller.account_create_post);
 
@@ -15,10 +15,6 @@ module.exports = function(app) {
 	app.get('/account/:id/update', account_controller.account_update_get);
 
 	app.post('/account/:id/update', account_controller.account_update_post);
-
-	app.get('/updateAccountForm', account_controller.account_update_get);
-
-	app.get('/updateAccount/:id', account_controller.account_update_post);
 
 	app.get('/account/:id', account_controller.account_detail);
 

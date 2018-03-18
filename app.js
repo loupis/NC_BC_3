@@ -19,12 +19,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 require('./app/routes/account.routes.js')(app);
 
-/*app.use((req, res, next) => {
-    console.log(req.method);
-    console.log(req.path);
-    next();
-});*/
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

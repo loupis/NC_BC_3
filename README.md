@@ -3,7 +3,7 @@
 A small CRUD service with REST API and a simple UI written in Node.js, Epress.js
 
 Online demo : 
-cloub deploy : https://ncbc3-qurhgcklbo.now.sh/
+cloud deploy : https://ncbc3-kxzwozglou.now.sh/
 
 using db : https://mlab.com/databases/nc_bc_3_db
 
