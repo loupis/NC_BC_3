@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 	app.get('/', account_controller.account_list);
 
-	app.get('/account/create',  function(req, res) { res.render('createAccountForm') });
+	app.get('/account/create',  function(req, res) { res.status(201).render('createAccountForm') });
 
 	app.post('/account/create', account_controller.account_create_post);
 
